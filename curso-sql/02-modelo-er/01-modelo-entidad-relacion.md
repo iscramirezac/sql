@@ -28,21 +28,7 @@ Una **entidad** representa un objeto del mundo real que puede identificarse de f
 
 **Representación en Diagrama E-R:**
 
-```
-┌─────────────┐
-│   EMPLEADO  │
-└─────────────┘
-     │
-     │ Representa
-     │
-     ▼
-┌─────────────────────────────────────┐
-│  Juan García                        │
-│  ID: 1001                           │
-│  Cargo: Ingeniero de Software       │
-│  Salario: $75,000                   │
-└─────────────────────────────────────┘
-```
+![Representación en Diagrama E-R](sql-Página-8.png)
 
 **Características de las entidades:**
 - Tienen atributos que las describen
@@ -58,23 +44,23 @@ Los **atributos** son las características o propiedades que describen a una ent
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        TIPOS DE ATRIBUTOS                       │
+│                        TIPOS DE ATRIBUTOS                                   │
 ├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  SIMPLES vs COMPUESTOS                                          │
-│  ────────────────────                                           │
-│  simple:     sexo (M/F)                                         │
-│  compuesto:  dirección (calle, ciudad, código postal)           │
-│                                                                 │
-│  UNIVALORADOS vs MULTIVALORADOS                                 │
-│  ─────────────────────────                                      │
-│  univalorado: fecha_nacimiento                                  │
-│  multivalorado: teléfonos (casa, trabajo, móvil)               │
-│                                                                 │
-│  DERIVADOS                                                      │
-│  ──────────                                                     │
-│  derivado: edad (se deriva de fecha_nacimiento)                 │
-│                                                                 │
+│                                                                             │
+│  SIMPLES vs COMPUESTOS                                                      │
+│  ────────────────────                                                   │
+│  simple:     sexo (M/F)                                                     │
+│  compuesto:  dirección (calle, ciudad, código postal)                       │
+│                                                                             │
+│  UNIVALORADOS vs MULTIVALORADOS                                             │
+│  ─────────────────────────                                              │
+│  univalorado: fecha_nacimiento                                              │
+│  multivalorado: teléfonos (casa, trabajo, móvil)                            │
+│                                                                             │
+│  DERIVADOS                                                                  │
+│  ──────────                                                               │
+│  derivado: edad (se deriva de fecha_nacimiento)                             │
+│                                                                             │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -82,17 +68,17 @@ Los **atributos** son las características o propiedades que describen a una ent
 
 ```
 ┌─────────────────┐
-│    EMPLEADO     │
+│    EMPLEADO        │
 ├─────────────────┤
-│  ● id (PK)      │  ← Atributo clave
-│  ● nombre       │  ← Atributo simple
-│  ● fecha_nac    │  ← Atributo simple
-│  ● dirección    │  ← Atributo compuesto
-│  │   ├─ calle   │
-│  │   ├─ ciudad  │
-│  │   └─ cp      │
-│  ● teléfonos    │  ← Atributo multivalorado
-│  ● edad         │  ← Atributo derivado
+│  ● id (PK)         │  ← Atributo clave
+│  ● nombre          │  ← Atributo simple
+│  ● fecha_nac       │  ← Atributo simple
+│  ● dirección       │  ← Atributo compuesto
+│  │   ├─ calle      │
+│  │   ├─ ciudad     │
+│  │   └─ cp         │
+│  ● teléfonos       │  ← Atributo multivalorado
+│  ● edad            │  ← Atributo derivado
 └─────────────────┘
 ```
 
@@ -104,12 +90,12 @@ Una **relación** describe una asociación entre dos o más entidades.
 
 ```
 ┌─────────────┐                        ┌─────────────┐
-│  EMPLEADO   │────── TRABAJA EN ─────▶│   PROYECTO  │
+│  EMPLEADO     │──── TRABAJA EN ─────▶│   PROYECTO     │
 └─────────────┘                        └─────────────┘
      │                                       │
-     │  Juan García ──▶ │ Proyecto Website  │
-     │  María López ──▶ │ Proyecto Mobile   │
-     │  Pedro Martínez ─▶│ Proyecto Website  │
+     │  Juan García ──▶     │ Proyecto Website  │
+     │  María López ──▶     │ Proyecto Mobile   │
+     │  Pedro Martínez ─▶   │ Proyecto Website  │
 ```
 
 **Grado de una relación:**

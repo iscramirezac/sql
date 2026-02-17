@@ -36,29 +36,7 @@ El **SGBD** (Sistema Gestor de Base de Datos) es el software que permite definir
 
 ### 1.3 Componentes de un Sistema de Base de Datos
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    SISTEMA DE BASE DE DATOS                  │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐  │
-│  │   HARDWARE   │    │   SOFTWARE   │    │    DATOS     │  │
-│  │              │    │              │    │              │  │
-│  │ - Servidores │    │ - SGBD       │    │ - Metadatos  │  │
-│  │ - Almacenamiento│  │ - SO         │    │ - Datos      │  │
-│  │ - Red        │    │ - Aplicaciones│   │ - Índices    │  │
-│  └──────────────┘    └──────────────┘    └──────────────┘  │
-│                                                             │
-│  ┌──────────────┐    ┌──────────────┐                      │
-│  │   USUARIOS   │    │ PROCEDIMIENTOS│                     │
-│  │              │    │              │                      │
-│  │ - DBA        │    │ - Políticas  │                      │
-│  │ - Desarroll. │    │ - Normativas │                      │
-│  │ - Usuarios finales│  │ - Procedures│                      │
-│  └──────────────┘    └──────────────┘                      │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
+![Componentes de un Sistema de Base de Datos](sql-Página-7.png)
 
 ### 1.4 Ventajas de las Bases de Datos
 
@@ -82,36 +60,7 @@ El **SGBD** (Sistema Gestor de Base de Datos) es el software que permite definir
 
 La arquitectura de tres niveles de ANSI/SPARC permite separar la vista del usuario de la estructura física de la base de datos.
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                  NIVEL EXTERNO (Vista)                  │
-│                                                         │
-│   Vista 1        Vista 2        Vista 3                  │
-│   ┌─────┐        ┌─────┐        ┌─────┐                │
-│   │User1│        │User2│        │User3│                │
-│   └─────┘        └─────┘        └─────┘                │
-└─────────────────────────────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────┐
-│                  NIVEL CONCEPTUAL (Lógico)              │
-│                                                         │
-│              ┌─────────────────────────┐                 │
-│              │   Esquema Conceptual   │                 │
-│              │   (Estructura Global)  │                 │
-│              └─────────────────────────┘                 │
-└─────────────────────────────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────┐
-│                  NIVEL INTERNO (Físico)                 │
-│                                                         │
-│              ┌─────────────────────────┐                 │
-│              │   Esquema Interno      │                 │
-│              │   (Almacenamiento)     │                 │
-│              └─────────────────────────┘                 │
-└─────────────────────────────────────────────────────────┘
-```
+![Estructura](sql-Página-1.png)
 
 ### 2.2 Descripción de los Niveles
 
@@ -135,65 +84,16 @@ La arquitectura de tres niveles de ANSI/SPARC permite separar la vista del usuar
 Los modelos de datos son herramientas conceptuales que permiten representar la realidad de forma abstracta.
 
 **Modelo Jerárquico:**
-```
-    ┌────────────┐
-    │  Empresa   │
-    └─────┬──────┘
-          │
-    ┌─────┴──────┐
-    │            │
-┌───▼──┐    ┌───▼──┐
-│Depto1│    │Depto2│
-└──┬───┘    └──┬───┘
-   │           │
-┌──▼──┐    ┌───▼──┐
-│Emp1 │    │Emp3  │
-└─────┘    └──────┘
-```
+
+![Modelo Jerárquico](sql-Página-2.png)
 
 **Modelo de Red:**
-```
-        ┌────────────┐
-        │  Empresa   │
-        └─────┬──────┘
-              │
-    ┌─────────┼─────────┐
-    │         │         │
-┌───▼───┐ ┌───▼───┐ ┌───▼───┐
-│Depto1 │ │Depto2 │ │Depto3 │
-└───┬───┘ └───┬───┘ └───┬───┘
-    │         │         │
-    └────┬────┼────┬────┘
-         │    │    │
-      ┌───▼────┴────▼───┐
-      │      Empleados  │
-      │   (Conectados)  │
-      └─────────────────┘
-```
+
+![Modelo de Red](sql-Página-3.png)  
 
 **Modelo Relacional:**
-```
-┌─────────────────┐
-│    DEPARTAMENTOS   │
-├─────────────────┤
-│ dept_id │ nombre │
-├─────────┼────────┤
-│    1    │   IT   │
-│    2    │  Ventas│
-└─────────┴────────┘
-       │
-       │ FK
-       ▼
-┌─────────────────┐
-│    EMPLEADOS    │
-├─────────────────┤
-│ emp_id │ nombre │ dept_id │
-├─────────┼────────┼─────────┤
-│   1    │ Juan   │    1    │
-│   2    │ María  │    1    │
-│   3    │ Pedro  │    2    │
-└─────────┴────────┴─────────┘
-```
+
+![Modelo Relacional](sql-Página-4.png)
 
 ---
 
@@ -213,30 +113,7 @@ La **independencia de datos** es la capacidad de modificar el esquema en un nive
 - Capacidad de modificar el esquema interno sin afectar el conceptual
 - Ejemplo: Cambiar el método de almacenamiento de archivos secuenciales a indexados
 
-```
-┌────────────────────────────────────────────────────────────┐
-│                    INDEPENDENCIA DE DATOS                  │
-├────────────────────────────────────────────────────────────┤
-│                                                            │
-│   ┌─────────────────────┐                                  │
-│   │   NIVEL EXTERNO     │  ──────────────────────►        │
-│   │   (Aplicaciones)    │    Independencia Lógica         │
-│   └─────────────────────┘                                 │
-│              ▲                                             │
-│              │                                             │
-│   ┌─────────────────────┐                                  │
-│   │   NIVEL CONCEPTUAL  │  ──────────────────────►        │
-│   │   (Estructura Lógica)│    Independencia Física         │
-│   └─────────────────────┘                                 │
-│              ▲                                             │
-│              │                                             │
-│   ┌─────────────────────┐                                  │
-│   │   NIVEL INTERNO     │                                 │
-│   │   (Almacenamiento)  │                                 │
-│   └─────────────────────┘                                  │
-│                                                            │
-└────────────────────────────────────────────────────────────┘
-```
+![Independencia de Datos](sql-Página-5.png)
 
 ### 3.3 Beneficios de la Independencia de Datos
 
@@ -324,39 +201,7 @@ REVOKE INSERT ON empleados FROM usuario1;
 
 ### 5.1 Roles en un Sistema de Base de Datos
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    ROLES EN LA BASE DE DATOS                │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │              ADMINISTRADOR (DBA)                    │   │
-│  │  • Instala y configura el SGBD                       │   │
-│  │  • Diseña la estructura de la BD                     │   │
-│  │  • Gestiona usuarios y permisos                      │   │
-│  │  • Realiza respaldos y recuperaciones                │   │
-│  │  • Optimiza el rendimiento                           │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                           │                                │
-│                           ▼                                │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │              DESARROLLADORES                        │   │
-│  │  • Diseñan consultas y procedimientos              │   │
-│  │  • Crean aplicaciones que acceden a la BD           │   │
-│  │  • Implementan reglas de negocio                    │   │
-│  │  • Optimizan queries existentes                     │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                           │                                │
-│                           ▼                                │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │              USUARIOS FINALES                       │   │
-│  │  • Acceden a los datos a través de aplicaciones     │   │
-│  │  • Generan reportes y consultas simples             │   │
-│  │  • No necesitan conocer la estructura técnica       │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
+![Roles en un Sistema de Base de Datos](sql-Página-6.png)
 
 ### 5.2 Funciones del Administrador de Base de Datos (DBA)
 
@@ -408,30 +253,30 @@ Registro 2: María | López | 60000
 Registro 3: Pedro | González | 55000
        ↓
 ┌─────────────────────────────────┐
-│ Juan|García|50000|María|López|60│
-│ 000|Pedro|González|55000        │
+│ Juan|García|50000|María|López|60      │
+│ 000|Pedro|González|55000              │
 └─────────────────────────────────┘
 ```
 
 **Archivo Indexado:**
 ```
 ┌─────────────────────────────────────────┐
-│               ÍNDICE                    │
+│               ÍNDICE                           │
 ├─────────────────────────────────────────┤
-│ Clave  │  Apuntador                     │
+│ Clave  │  Apuntador                            │
 ├────────┼────────────────────────────────┤
-│  1001  │  Bloque 5, Offset 0            │
-│  1002  │  Bloque 3, Offset 2           │
-│  1003  │  Bloque 7, Offset 1           │
+│  1001  │  Bloque 5, Offset 0                   │
+│  1002  │  Bloque 3, Offset 2                   │
+│  1003  │  Bloque 7, Offset 1                   │
 └────────┴────────────────────────────────┘
               │
               ▼
 ┌─────────────────────────────────────────┐
-│              DATOS                       │
+│              DATOS                             │
 ├─────────────────────────────────────────┤
-│ Bloque 3 │ Bloque 5 │ Bloque 7         │
-│ 1002     │ 1001     │ 1003              │
-│ María    │ Juan     │ Pedro             │
+│ Bloque 3 │ Bloque 5 │ Bloque 7                 │
+│ 1002     │ 1001     │ 1003                     │
+│ María    │ Juan     │ Pedro                    │
 └─────────────────────────────────────────┘
 ```
 
@@ -467,11 +312,11 @@ Registro 3: Pedro | González | 55000
 **Tabla Hash:**
 ```
 ┌─────────┬────────────────┐
-│  Hash   │    Datos       │
+│  Hash   │    Datos            │
 ├─────────┼────────────────┤
-│  #1234  │  Juan García   │
-│  #5678  │  María López   │
-│  #9012  │  Pedro González│
+│  #1234  │  Juan García      │
+│  #5678  │  María López      │
+│  #9012  │  Pedro González   │
 └─────────┴────────────────┘
 ```
 
